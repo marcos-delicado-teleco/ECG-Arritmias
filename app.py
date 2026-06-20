@@ -43,7 +43,7 @@ if boton_rn or boton_rf:
         posiciones = []
 
         for i, simbolo in enumerate(anotaciones.symbol):
-            if simbolo not in ['N', 'V', 'A']:
+            if simbolo not in ['N', 'V', 'A', 'L', 'R', 'B', 'a', 'J', 'S', 'e', 'j']:
                 continue
             pico = anotaciones.sample[i]
             if pico - ventana < 0 or pico + ventana > len(señal_completa):
@@ -65,6 +65,8 @@ if boton_rn or boton_rf:
         st.metric('Total latidos analizados', len(predicciones))
         st.metric('Latidos normales ✅', int(normales.item()))
         st.metric('Arritmias detectadas ⚠️', int(arritmias.item()))
+        st.write(f'Anotaciones encontradas: {len(anotaciones.symbol)}')
+        st.write(f'Símbolos únicos: {set(anotaciones.symbol)}')
 
         fig2, ax2 = plt.subplots(figsize=(4, 4))
         ax2.pie(
